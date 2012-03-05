@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import model.*;
 import output.*;
 import parsing.*;
