@@ -46,6 +46,9 @@ public class TivooViewer extends JPanel{
         add(makeInformationPanel(), BorderLayout.SOUTH);
     }
     
+    /**
+     * Prompt for a file with events and then parse them
+     */
     private void addEvents(){
     	JFileChooser fc = new JFileChooser();
         
@@ -57,16 +60,25 @@ public class TivooViewer extends JPanel{
         } 
     }
     
+    /**
+     * Clear the event list and start over
+     */
     private void clearEvents(){
     	myModel.startOver();
     }
     
+    /**
+     * Process events and display them
+     */
     private void generateOutput(){
     	applyFilters();
     	myModel.generate();
     	update(myModel.getURL());
     }
     
+    /**
+     * Apply selected filters to the list of events
+     */
     private void applyFilters(){
     	if(myKeywordFilterBox.isSelected())
     		myModel.applyKeywordFilter();
@@ -78,6 +90,9 @@ public class TivooViewer extends JPanel{
     		myModel.applyTVActorFilter();
     }
     
+    /**
+     * Prompt for and set the keyword for which to filter
+     */
     private void setKeyword(){
     	String key = JOptionPane.showInputDialog(this,
 		        "Enter keyword",
@@ -88,6 +103,9 @@ public class TivooViewer extends JPanel{
     	}
     }
     
+    /**
+     * Prompt for and set the location for which to filter
+     */
     private void setLocation(){
     	String loc = JOptionPane.showInputDialog(this,
 		        "Enter Location",
@@ -98,6 +116,9 @@ public class TivooViewer extends JPanel{
     	}
     }
     
+    /**
+     * Prompt for and set the start and end times for which to filter
+     */
     private void setStartEndTime(){
     	String start = JOptionPane.showInputDialog(this,
 		        "Enter Start (MM dd YYYY)",
@@ -113,6 +134,9 @@ public class TivooViewer extends JPanel{
     	}
     }
     
+    /**
+     * Prompt for and set the actor for whom to filter
+     */
     private void setActor(){
     	String actor = JOptionPane.showInputDialog(this,
 		        "Enter Actor",
@@ -141,8 +165,15 @@ public class TivooViewer extends JPanel{
         myStatus.setText(message);
     }
 
+    /**
+     * Update the view to the new html file
+     * @param url Location of the file
+     */
     private void update (String url){
         try{
+        	//If the new filtered file has the same name as the old one,
+        	//setting it to the same path will not refresh it, so change
+        	//to a dummy then set
         	URL dummy = new File("").toURL();
         	myPage.setPage(dummy);
         	URL url2 = new File(url).toURL();
@@ -248,6 +279,11 @@ public class TivooViewer extends JPanel{
         }
     }
     
+    /**
+     * Gives the load file button an action
+     * @author herio
+     *
+     */
     private class loadFileAction implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -255,6 +291,11 @@ public class TivooViewer extends JPanel{
 		}
     }
     
+    /**
+     * Gives the clear events button an action
+     * @author herio
+     *
+     */
     private class clearEventsAction implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -262,6 +303,11 @@ public class TivooViewer extends JPanel{
 		}
     }
     
+    /**
+     * Gives the generate output button an action
+     * @author herio
+     *
+     */
     private class generateOutputAction implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -269,12 +315,22 @@ public class TivooViewer extends JPanel{
 		}
     }
     
+    /**
+     * Gives the url bar an action (I think)
+     * @author herio
+     *
+     */
     private class ShowPageAction implements ActionListener{
 		public void actionPerformed (ActionEvent e){
 		    update(myURLDisplay.getText());
 		}
 	}
     
+    /**
+     * Gives the keyword filter box an action
+     * @author herio
+     *
+     */
     private class keywordFilterAction implements ActionListener{
     	public void actionPerformed(ActionEvent arg0){
     		if(myKeywordFilterBox.isSelected())
@@ -282,6 +338,11 @@ public class TivooViewer extends JPanel{
     	}
     }
     
+    /**
+     * Gives the location filter box an action
+     * @author herio
+     *
+     */
     private class locationFilterAction implements ActionListener{
     	public void actionPerformed(ActionEvent arg0){
     		if(myLocationFilterBox.isSelected())
@@ -289,6 +350,11 @@ public class TivooViewer extends JPanel{
     	}
     }
     
+    /**
+     * Gives the time filter box an action
+     * @author herio
+     *
+     */
     private class timeFilterAction implements ActionListener{
     	public void actionPerformed(ActionEvent arg0){
     		if(myTimeFilterBox.isSelected())
@@ -296,6 +362,11 @@ public class TivooViewer extends JPanel{
     	}
     }
     
+    /**
+     * Gives the actor filter box an action
+     * @author herio
+     *
+     */
     private class tvActorFilterAction implements ActionListener{
     	public void actionPerformed(ActionEvent arg0){
     		if(myTVActorFilterBox.isSelected())

@@ -149,6 +149,11 @@ public class TivooModel {
     	myLocation = s;
     }
     
+    /**
+     * Set the start and end times for which to filter
+     * @param s1 Start of time range
+     * @param s2 End of time range
+     */
     public void setStartEndTime(String s1, String s2){
     	Scanner sc1 = new Scanner(s1);
     	int s1MM = sc1.nextInt();
@@ -163,6 +168,10 @@ public class TivooModel {
     	myEndTime = new DateTime(s2YYYY, s2MM, s2dd, 0, 0);
     }
     
+    /**
+     * Set the actor for whom to filter
+     * @param s Name of the actor
+     */
     public void setActor(String s){
     	myActor = s;
     }
